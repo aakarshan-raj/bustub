@@ -70,6 +70,14 @@ class TrieNode {
 
   // You can add additional fields and methods here except storing children. But in general, you don't need to add extra
   // fields to complete this project.
+  auto HasChild(const char &c) const -> bool { return children_.find(c) != children_.end(); }
+
+  auto GetChildNode(const char &c) const -> std::shared_ptr<const TrieNode> {
+    if (!HasChild(c)) {
+      return nullptr;
+    }
+    return children_.find(c)->second;
+  }
 };
 
 // A TrieNodeWithValue is a TrieNode that also has a value of type T associated with it.
